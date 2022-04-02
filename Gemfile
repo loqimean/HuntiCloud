@@ -51,12 +51,25 @@ gem "bootsnap", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+
   gem "rspec-rails", "~> 5.1"
+  gem 'faker', '~> 2.19'
+  gem "simplecov", "~> 0.21.2"
+  gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+
+  # Deploy
+  gem 'capistrano', '~> 3.7'
+  gem 'capistrano-passenger', '~> 0.2.0'
+  gem 'capistrano-rails', '~> 1.2'
+  gem 'capistrano-yarn'
+  gem 'capistrano-linked-files'
+  gem 'capistrano-rvm'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
@@ -64,3 +77,12 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 end
+
+group :production do
+  gem 'passenger'
+end
+
+gem 'carrierwave', '~> 2.2'
+gem 'devise', '~> 4.8'
+gem 'exifr', '~> 1.3'
+gem 'tailwindcss_merger'
