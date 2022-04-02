@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="dark">
   <head>
     <title>HuntiCloud</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -11,8 +11,13 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+  <body class="bg-gray-50 dark:bg-gray-900">
+    <aside>
+      <div class="wrapper" data-controller="dark-theme">
+        <input type="checkbox" name="checkbox" class="switch" data-action="change->dark-theme#toggleTheme">
+      </div>
+    </aside>
+    <main class="container flex px-5 mx-auto mt-28">
       <%= yield %>
     </main>
   </body>
