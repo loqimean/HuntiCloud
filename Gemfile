@@ -63,6 +63,9 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 
+  # Annotating files after migrations
+  gem 'annotate'
+
   # Deploy
   gem 'capistrano', '~> 3.7'
   gem 'capistrano-passenger', '~> 0.2.0'
