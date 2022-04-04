@@ -89,3 +89,4 @@ gem 'carrierwave', '~> 2.2'
 gem 'devise', '~> 4.8'
 gem 'exifr', '~> 1.3'
 gem 'tailwindcss_merger'
+gem 'rest-client' # try to use lighter gem like HTTParty or Faraday

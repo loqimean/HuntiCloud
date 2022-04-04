@@ -1,0 +1,5 @@
+@layer components {
+  .card {
+    @apply flex items-center p-4 bg-white rounded-lg shadow-lg dark:bg-gray-800 h-fit w-fit;
+  }
+}

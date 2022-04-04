@@ -1,12 +1,31 @@
-<%= stylesheet_link_tag 'dark-theme-switcher' %>
-<div class="flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800">
-  <div>
-    <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-      Total photos & videos
-    </p>
-    <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-      <%= @total_galleries %>
-    </p>
+<section class="w-full h-full lg:ml-72">
+  <div class="flex gap-5">
+    <div class="card">
+      <div>
+        <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+          Total photos & videos
+        </p>
+        <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+          <%= @total_galleries %>
+        </p>
+      </div>
+    </div>
+
+    <div class="flex gap-5">
+      <% [978, 840].each do |currency_iso_code| %>
+        <% currency = @monobank_service.currency_by(sell_currency_iso_code: currency_iso_code) %>
+
+        <div class="card">
+          <div>
+            <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
+              <%= currency_iso_code_to_code(currency_iso_code) %>
+            </p>
+            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
+              <%= "#{currency.dig('rateBuy').truncate(2)}/#{currency.dig('rateSell').truncate(2)}" %>
+            </p>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
-</div>
-<p class="dark:text-gray-200">Hello</p>
+</section>
