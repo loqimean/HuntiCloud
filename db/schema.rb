@@ -69,6 +69,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_01_09_152155) do
     t.string "email", null: false
     t.string "encrypted_password", null: false
     t.integer "partner_ids", default: [], null: false, array: true
+    t.datetime "remember_created_at", precision: nil
     t.datetime "current_sign_in_at", precision: nil
     t.datetime "last_sign_in_at", precision: nil
     t.string "current_sign_in_ip"

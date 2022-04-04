@@ -2,18 +2,19 @@
 #
 # Table name: users
 #
-#  id                 :bigint           not null, primary key
-#  current_sign_in_at :datetime
-#  current_sign_in_ip :string
-#  email              :string           not null
-#  encrypted_password :string           not null
-#  first_name         :string           not null
-#  last_name          :string           not null
-#  last_sign_in_at    :datetime
-#  last_sign_in_ip    :string
-#  partner_ids        :integer          default([]), not null, is an Array
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
+#  id                  :bigint           not null, primary key
+#  current_sign_in_at  :datetime
+#  current_sign_in_ip  :string
+#  email               :string           not null
+#  encrypted_password  :string           not null
+#  first_name          :string           not null
+#  last_name           :string           not null
+#  last_sign_in_at     :datetime
+#  last_sign_in_ip     :string
+#  partner_ids         :integer          default([]), not null, is an Array
+#  remember_created_at :datetime
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
 #
 # Indexes
 #
@@ -22,8 +23,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  devise :database_authenticatable, :rememberable, :validatable
 
   has_many :galleries, dependent: :destroy
   has_many :partner_request, dependent: :destroy
