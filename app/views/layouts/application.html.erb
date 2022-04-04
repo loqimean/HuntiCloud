@@ -5,20 +5,19 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= favicon_link_tag 'favicon.png' %>
+    <%= stylesheet_link_tag "tailwind", 'dark-theme-switcher', "inter-font", "data-turbo-track": "reload" %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="bg-gray-50 dark:bg-gray-900">
-    <aside>
-      <div class="wrapper" data-controller="dark-theme">
-        <input type="checkbox" name="checkbox" class="switch" data-action="change->dark-theme#toggleTheme">
-      </div>
-    </aside>
-    <main class="container flex px-5 mx-auto mt-28">
-      <%= yield %>
-    </main>
+  <body class="bg-gray-50 dark:bg-dark-grey">
+    <div class="flex min-h-screen">
+      <%= render 'shared/navbar' %>
+      <main class="container px-5 mx-auto mt-12">
+        <%= yield %>
+      </main>
+    </div>
   </body>
 </html>
