@@ -1,0 +1,25 @@
+<aside class="fixed flex-col hidden h-full min-h-screen p-5 bg-gray-100 lg:flex lg:w-72 dark:bg-light-grey">
+  <%= link_to root_path do %>
+    <div class="w-36 text-dark-grey dark:text-white">
+      <%= render 'shared/logo' %>
+    </div>
+  <% end %>
+
+  <div class="wrapper" data-controller="dark-theme">
+    <%= check_box_tag :dark_theme_switcher, true, false, class: 'switch', data: { action: 'change->dark-theme#toggleTheme', dark_theme_target: 'switcher' } %>
+  </div>
+
+  <ul class="transition-colors text-dark-grey dark:text-gray-400">
+    <li class="p-3 dark:hover:text-gray-200 hover:text-black <%= active_link(galleries_path) %>">
+      <%= link_to 'Gallery', galleries_path %>
+    </li>
+    <li class="p-3 dark:hover:text-gray-200 hover:text-black <%= active_link(people_path) %>">
+      <%= link_to 'People', people_path %>
+    </li>
+  </ul>
+
+  <div class="flex items-center justify-between mt-auto text-dark-grey dark:text-gray-200">
+    <%= simple_format(current_user&.first_name) %>
+    <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'text-red-500 text-xs' %>
+  </div>
+</aside>
