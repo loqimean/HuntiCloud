@@ -1,4 +1,4 @@
-class Monobank::Base < BaseService
+class MonobankService::Base < BaseService
   CURRENCY_API = 'https://api.monobank.ua/bank/currency'.freeze
 
   attr_reader :currencies
