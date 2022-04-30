@@ -1,5 +1,5 @@
-<section class="w-full h-full lg:ml-72">
-  <div class="flex gap-5">
+<section class="w-full h-full">
+  <div class="flex flex-wrap gap-5">
     <div class="card">
       <div>
         <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
@@ -11,14 +11,17 @@
       </div>
     </div>
 
-    <div class="flex gap-5">
+    <div class="flex flex-wrap w-full gap-5 sm:w-fit">
       <% [978, 840].each do |currency_iso_code| %>
         <% currency = @monobank_service.currency_by(sell_currency_iso_code: currency_iso_code) %>
 
         <div class="card">
-          <div>
+          <div class="gap-2 p-3 mr-4 rounded-full <%= currency_iso_code == 978 ? 'dark:bg-fuchsia-500 bg-fuchsia-100 text-fuchsia-500 dark:text-fuchsia-100' : 'dark:bg-green-500 text-green-500 bg-green-100 dark:text-green-100' %>">
+            <%= svg_for_currency(currency_iso_code_to_code(currency_iso_code)) %>
+          </div>
+          <div class="flex flex-col">
             <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-              <%= currency_iso_code_to_code(currency_iso_code) %>
+              <%= currency_iso_code_to_code(currency_iso_code).to_s.upcase %>
             </p>
             <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
               <%= "#{currency.dig('rateBuy').truncate(2)}/#{currency.dig('rateSell').truncate(2)}" %>
