@@ -5,7 +5,7 @@ module.exports = {
   content: [
     './app/helpers/**/*.rb',
     './app/javascript/**/*.js',
-    './app/views/**/*'
+    './app/views/**/*',
   ],
   theme: {
     extend: {
@@ -13,8 +13,11 @@ module.exports = {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        'dark-grey': '#121212',
-        'light-grey': '#222831'
+        'dark-grey': '#121317',
+        'light-grey': '#1a1c23'
+      },
+      margin: {
+        'centered-logo': '15%'
       }
     },
   },

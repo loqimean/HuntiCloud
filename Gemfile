@@ -22,6 +22,7 @@ gem 'exifr', '~> 1.3'
 gem 'tailwindcss_merger'
 gem 'rest-client' # try to use lighter gem like HTTParty or Faraday
 gem 'fake_picture', '~> 0.2.2'
+gem "avatarro"
 
 group :development, :test do
   gem 'debug', platforms: %i[ mri mingw x64_mingw ]

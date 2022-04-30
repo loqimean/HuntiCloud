@@ -6,4 +6,8 @@
   .btn-blue {
     @apply text-white bg-blue-700 hover:bg-blue-800 btn;
   }
+
+  .btn-dark {
+    @apply text-white bg-black hover:bg-gray-900 btn;
+  }
 }

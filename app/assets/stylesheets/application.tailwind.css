@@ -3,6 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* buttons.css */
 @layer components {
   .btn {
     @apply px-5 py-3 rounded-md cursor-pointer;
@@ -11,11 +12,16 @@
   .btn-blue {
     @apply text-white bg-blue-700 hover:bg-blue-800 btn;
   }
+
+  .btn-dark {
+    @apply text-white bg-black hover:bg-gray-900 btn;
+  }
 }
 
+/* cards.css */
 @layer components {
   .card {
-    @apply flex items-center p-4 bg-white rounded-lg shadow-lg dark:bg-gray-800 h-fit w-fit;
+    @apply flex items-center w-full p-4 bg-white rounded-lg shadow-lg dark:bg-gray-800 h-fit sm:w-fit;
   }
 }
 
