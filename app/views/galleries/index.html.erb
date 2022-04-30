@@ -1,4 +1,4 @@
-<section class="lg:ml-72">
+<section>
   <%= form_with url: galleries_path, model: Gallery, class: 'fixed right-5 bottom-6' do |f| %>
     <%= f.label 'Upload file', for: :gallery_file, class: 'btn btn-blue' %>
     <%= f.file_field :file, hidden: '', onchange: 'form.submit()' %>
@@ -10,7 +10,7 @@
 
       <div class="flex flex-wrap">
         <% collection.each do |gallery_file| %>
-          <div class="w-1/3 p-2">
+          <div class="w-1/3 p-2 lg:w-1/4 xl:w-1/5">
             <%= image_tag gallery_file.file.thumb.url, class: 'rounded max-h-52 m-auto' %>
           </div>
         <% end %>
