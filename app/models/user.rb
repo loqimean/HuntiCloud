@@ -33,6 +33,10 @@ class User < ApplicationRecord
   validates :first_name, presence: true, length: { minimum: 2, maximum: 50 }
   validates :last_name, presence: true, length: { minimum: 2, maximum: 50 }
 
+  def full_name
+    [first_name, last_name].reject(&:blank?).join(' ')
+  end
+
   def pending_invite_partner_request(candidate_id)
     PartnerRequest.find_by(status: :pending, invited: self, user_id: candidate_id)
   end
