@@ -14,18 +14,6 @@
 #
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
-require 'simplecov'
-
-SimpleCov.start 'rails' do
-  add_group 'Models', 'app/models'
-  add_group 'Controllers', 'app/controllers'
-  add_group 'Helpers', 'app/helpers'
-
-  add_filter '/spec/'
-  add_filter /devise_*/
-  add_filter '/config/'
-end
-
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
@@ -39,6 +27,11 @@ RSpec.configure do |config|
     # ...rather than:
     #     # => "be bigger than 2"
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
+  end
+
+  config.before(:all) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
   end
 
   # rspec-mocks config goes here. You can use an alternate test double
