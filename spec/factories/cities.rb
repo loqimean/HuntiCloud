@@ -12,11 +12,9 @@
 #
 #  index_cities_on_region_id  (region_id)
 #
-class City < ApplicationRecord
-  CHILDHOOD_CITY = 'ChildhoodCity'.freeze
-  CURRENT_CITY = 'CurrentCity'.freeze
-  DEFAULT = 'City'.freeze
-
-  belongs_to :region
-  has_many :people, dependent: :restrict_with_exception
+FactoryBot.define do
+  factory :city do
+    region
+    name { Faker::Address.city }
+  end
 end

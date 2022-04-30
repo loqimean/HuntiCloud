@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_01_09_152155) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_05_042152) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,6 +18,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_01_09_152155) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "region_id"
+    t.index ["region_id"], name: "index_cities_on_region_id"
   end
 
   create_table "galleries", force: :cascade do |t|
@@ -49,18 +51,25 @@ ActiveRecord::Schema[7.0].define(version: 2022_01_09_152155) do
     t.bigint "phone_number"
     t.string "photo", null: false
     t.string "email"
+    t.integer "gender"
     t.datetime "birthday", precision: nil
     t.text "characteristic"
     t.decimal "blue_personality", precision: 10, scale: 2, default: "0.0"
     t.decimal "red_personality", precision: 10, scale: 2, default: "0.0"
     t.decimal "green_personality", precision: 10, scale: 2, default: "0.0"
     t.decimal "yellow_personality", precision: 10, scale: 2, default: "0.0"
-    t.bigint "childhood_city_id", null: false
+    t.bigint "childhood_city_id"
     t.bigint "current_city_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["childhood_city_id"], name: "index_people_on_childhood_city_id"
     t.index ["current_city_id"], name: "index_people_on_current_city_id"
+  end
+
+  create_table "regions", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

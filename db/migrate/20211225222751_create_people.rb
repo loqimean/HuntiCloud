@@ -7,6 +7,7 @@ class CreatePeople < ActiveRecord::Migration[6.1]
       t.bigint :phone_number
       t.string :photo, null: false
       t.string :email
+      t.integer :gender
       t.datetime :birthday
       t.text :characteristic
       t.decimal :blue_personality, precision: 10, scale: 2, default: 0
@@ -14,7 +15,7 @@ class CreatePeople < ActiveRecord::Migration[6.1]
       t.decimal :green_personality, precision: 10, scale: 2, default: 0
       t.decimal :yellow_personality, precision: 10, scale: 2, default: 0
 
-      t.references :childhood_city, null: false, foreign_key: { to_table: 'cities' }
+      t.references :childhood_city, null: true, foreign_key: { to_table: 'cities' }
       t.references :current_city, null: false, foreign_key: { to_table: 'cities' }
 
       t.timestamps
