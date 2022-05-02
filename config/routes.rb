@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :envelope_formulas
   root 'home#index'
 
   resources :people

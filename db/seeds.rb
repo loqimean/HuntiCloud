@@ -1,5 +1,8 @@
 puts 'Start creating admin user'
-User.create!(first_name: 'Ivan', last_name: 'Admin', password: 'simplesimple', email: 'admin@mail.io')
+user = User.create!(first_name: 'Ivan', last_name: 'Admin', password: 'simplesimple', email: 'admin@mail.io')
+
+puts 'Start creating people'
+FactoryBot.create_list(:envelope_formula, 5, user: user)
 
 puts 'Start creating regions'
 regions = RegionsSeed.run

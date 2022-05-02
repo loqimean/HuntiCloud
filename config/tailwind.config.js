@@ -8,6 +8,14 @@ module.exports = {
     './app/views/**/*',
   ],
   theme: {
+    container: {
+      center: true,
+      screens: {
+        sm: "100%",
+        md: "100%",
+        lg: "100%"
+      }
+    },
     extend: {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],

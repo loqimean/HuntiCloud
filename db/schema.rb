@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_05_042152) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_30_153608) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_05_042152) do
     t.datetime "updated_at", null: false
     t.bigint "region_id"
     t.index ["region_id"], name: "index_cities_on_region_id"
+  end
+
+  create_table "envelope_formulas", force: :cascade do |t|
+    t.string "name", null: false
+    t.decimal "daily_expences", precision: 10, scale: 2, null: false
+    t.decimal "savings", precision: 10, scale: 2, null: false
+    t.decimal "funds_for_others", precision: 10, scale: 2, null: false
+    t.decimal "funds_for_self_development", precision: 10, scale: 2, null: false
+    t.decimal "funds_for_expensive_purchase", precision: 10, scale: 2, null: false
+    t.decimal "investment_funds", precision: 10, scale: 2, null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_envelope_formulas_on_user_id"
   end
 
   create_table "galleries", force: :cascade do |t|
@@ -88,6 +102,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_05_042152) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "envelope_formulas", "users"
   add_foreign_key "partner_requests", "users"
   add_foreign_key "partner_requests", "users", column: "invited_id"
   add_foreign_key "people", "cities", column: "childhood_city_id"

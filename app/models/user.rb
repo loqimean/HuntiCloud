@@ -27,6 +27,7 @@ class User < ApplicationRecord
 
   has_many :galleries, dependent: :destroy
   has_many :partner_request, dependent: :destroy
+  has_many :envelope_formulas, dependent: :destroy
 
   scope :pending_partner_requests, -> { partner_request.where(status: :pending) }
 

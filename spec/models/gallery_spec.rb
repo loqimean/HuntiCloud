@@ -1,11 +1,20 @@
 # == Schema Information
 #
-# Table name: regions
+# Table name: galleries
 #
-#  id         :bigint           not null, primary key
-#  name       :string           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id             :bigint           not null, primary key
+#  count_of_views :integer          default(0), not null
+#  favorite       :boolean          default(FALSE), not null
+#  file           :string           not null
+#  removed        :boolean          default(FALSE), not null
+#  share          :boolean          default(TRUE), not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  user_id        :bigint
+#
+# Indexes
+#
+#  index_galleries_on_user_id  (user_id)
 #
 require 'rails_helper'
 

@@ -3,10 +3,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* all.css */
+@layer components {
+
+}
+
 /* buttons.css */
 @layer components {
   .btn {
-    @apply px-5 py-3 rounded-md cursor-pointer;
+    @apply px-5 py-3 text-center rounded-md cursor-pointer w-fit;
   }
 
   .btn-blue {

@@ -1,5 +1,5 @@
 <!-- Desktop sidebar -->
-<aside class="z-20 flex-shrink-0 hidden w-64 overflow-y-auto bg-white dark:bg-light-grey md:block">
+<aside class="z-20 flex-shrink-0 hidden w-64 overflow-y-auto bg-white dark:bg-light-grey xl:block">
   <div class="py-4 text-gray-500 dark:text-gray-400">
     <%= link_to root_path do %>
       <div class="mt-4 mx-centered-logo w-36 text-dark-grey dark:text-white">
@@ -8,7 +8,7 @@
     <% end %>
 
     <ul class="mt-10 text-gray-500 dark:text-gray-400">
-      <% [:gallery, :people].each do |controller_name| %>
+      <% [:gallery, :people, :envelope_formulas].each do |controller_name| %>
         <% path = send("#{controller_name.to_s.pluralize}_path") %>
         <li class="relative px-6 py-3">
           <%= '<span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>'.html_safe if current_page?(path) %>
@@ -30,7 +30,7 @@
 <!-- Mobile sidebar -->
 <!-- Backdrop -->
 <div class="fixed inset-0 z-10 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center" style="display: none;" data-menu-target="backdrop"></div>
-<aside class="fixed inset-y-0 z-20 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white dark:bg-light-grey md:hidden" style="display: none;" data-menu-target="sidebar">
+<aside class="fixed inset-y-0 z-20 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white dark:bg-light-grey xl:hidden" style="display: none;" data-menu-target="sidebar">
   <div class="py-4 text-gray-500 dark:text-gray-400">
     <div class="px-6 my-6">
       <button class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">

@@ -5,6 +5,8 @@ module ApplicationHelper
       path = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>'
     when :people
       path = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>'
+    when :envelope_formulas
+      path = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.871 4A17.926 17.926 0 003 12c0 2.874.673 5.59 1.871 8m14.13 0a17.926 17.926 0 001.87-8c0-2.874-.673-5.59-1.87-8M9 9h1.246a1 1 0 01.961.725l1.586 5.55a1 1 0 00.961.725H15m1-7h-.08a2 2 0 00-1.519.698L9.6 15.302A2 2 0 018.08 16H8"></path>'
     else
       raise "Unknown case for controller: #{controller_name}"
     end
@@ -30,5 +32,15 @@ module ApplicationHelper
     'stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">' + path + '</svg>'
 
     svg.html_safe
+  end
+
+  def inline_error_for(field, form_obj)
+    html = []
+    if form_obj.errors[field].any?
+      html << form_obj.errors[field].map do |msg|
+        tag.div(msg, class: "text-red-400 text-xs m-0 p-0 text-right mb-2")
+      end
+    end
+    html.join.html_safe
   end
 end

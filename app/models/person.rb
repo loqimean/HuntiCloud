@@ -44,13 +44,15 @@ class Person < ApplicationRecord
   validates :first_name, presence: true
   validates :gender, inclusion: { in: HashWithIndifferentAccess.new(GENDERS).keys }
 
-  before_validation :set_default_picture, if: photo.blank?
+  before_validation :set_default_picture
 
   def full_name
     "#{first_name} #{last_name} #{second_name}"
   end
 
   def set_default_picture
+    return unless self.photo.blank?
+
     self.photo = FakePicture::Avatar.file(gender.to_sym)
   end
 end

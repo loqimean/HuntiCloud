@@ -1,0 +1,21 @@
+<%= turbo_frame_tag envelope_formula, class: 'text-gray-700 divTableRow dark:text-gray-400' do %>
+  <div class="px-4 py-3 text-xs divTableCell"><%= envelope_formula.name %></div>
+  <div class="px-4 py-3 text-xs divTableCell"><%= number_to_percentage(envelope_formula.daily_expences * 100, precision: 1) %></div>
+  <div class="px-4 py-3 text-xs divTableCell"><%= number_to_percentage(envelope_formula.savings * 100, precision: 1) %></div>
+  <div class="px-4 py-3 text-xs divTableCell"><%= number_to_percentage(envelope_formula.funds_for_others * 100, precision: 1) %></div>
+  <div class="px-4 py-3 text-xs divTableCell"><%= number_to_percentage(envelope_formula.funds_for_self_development * 100, precision: 1) %></div>
+  <div class="px-4 py-3 text-xs divTableCell"><%= number_to_percentage(envelope_formula.funds_for_expensive_purchase * 100, precision: 1) %></div>
+  <div class="px-4 py-3 text-xs divTableCell"><%= number_to_percentage(envelope_formula.investment_funds * 100, precision: 1) %></div>
+  <div class="px-4 py-3 text-xs divTableCell w-fit">
+    <%= link_to edit_envelope_formula_path(envelope_formula), class: 'flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-full active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple', aria_label: 'edit' do %>
+      <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
+        <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
+      </svg>
+    <% end %>
+  </div>
+  <div class="px-4 py-3 text-xs text-red-500 divTableCell">
+    <%= button_to envelope_formula_path(envelope_formula), method: :delete  do %>
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+    <% end %>
+  </div>
+<% end %>
