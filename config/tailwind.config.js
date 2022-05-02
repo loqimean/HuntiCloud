@@ -6,6 +6,7 @@ module.exports = {
     './app/helpers/**/*.rb',
     './app/javascript/**/*.js',
     './app/views/**/*',
+    './config/initializers/simple_form_tailwindcss.rb',
   ],
   theme: {
     container: {
