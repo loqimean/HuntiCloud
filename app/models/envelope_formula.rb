@@ -24,6 +24,7 @@
 #
 class EnvelopeFormula < ApplicationRecord
   belongs_to :user
+  has_many :profits, dependent: :restrict_with_exception
 
   scope :ordered, ->{ order(:name) }
 

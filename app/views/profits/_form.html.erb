@@ -1,0 +1,43 @@
+<%= simple_form_for(profit, html: { class: 'contents dark:text-gray-200 text-gray-700', data: { controller: 'envelope-formula' } }) do |f| %>
+  <%= f.input :amount, input_html: {
+                          class: 'text-gray-800',
+                          data: {
+                            envelope_formula_target: 'amount',
+                            action: 'input->envelope-formula#calculate'
+                          }
+                        } %>
+  <%= f.input :daily_expences, input_html: {
+                                  class: 'text-gray-800',
+                                  data: { envelope_formula_target: 'dailyExpences' }
+                                } %>
+  <%= f.input :savings, input_html: {
+                          class: 'text-gray-800',
+                          data: { envelope_formula_target: 'savings' }
+                        } %>
+  <%= f.input :funds_for_others, input_html: {
+                                    class: 'text-gray-800',
+                                    data: { envelope_formula_target: 'fundsForOthers' }
+                                  } %>
+  <%= f.input :funds_for_self_development, input_html: {
+                                              class: 'text-gray-800',
+                                              data: { envelope_formula_target: 'fundsForSelfDevelopment' }
+                                            } %>
+  <%= f.input :funds_for_expensive_purchase, input_html: {
+                                                class: 'text-gray-800',
+                                                data: { envelope_formula_target: 'fundsForExpensivePurchase' }
+                                              } %>
+  <%= f.input :investment_funds, input_html: {
+                                    class: 'text-gray-800',
+                                    data: { envelope_formula_target: 'investmentFunds' }
+                                  } %>
+  <%= f.association :envelope_formula, collection: options_with_data(EnvelopeFormula.ordered),
+                                        input_html: {
+                                          class: 'text-gray-800',
+                                          data: {
+                                            envelope_formula_target: 'formula',
+                                            action: 'change->envelope-formula#calculate'
+                                          }
+                                        }, include_blank: false %>
+
+  <%= f.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+<% end %>

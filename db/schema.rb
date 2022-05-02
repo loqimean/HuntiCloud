@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_30_153608) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_02_065635) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -80,6 +80,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_30_153608) do
     t.index ["current_city_id"], name: "index_people_on_current_city_id"
   end
 
+  create_table "profits", force: :cascade do |t|
+    t.decimal "amount", null: false
+    t.decimal "daily_expences"
+    t.decimal "funds_for_expensive_purchase"
+    t.decimal "funds_for_others"
+    t.decimal "funds_for_self_development"
+    t.decimal "investment_funds"
+    t.decimal "savings"
+    t.bigint "user_id", null: false
+    t.bigint "envelope_formula_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["envelope_formula_id"], name: "index_profits_on_envelope_formula_id"
+    t.index ["user_id"], name: "index_profits_on_user_id"
+  end
+
   create_table "regions", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -107,4 +123,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_30_153608) do
   add_foreign_key "partner_requests", "users", column: "invited_id"
   add_foreign_key "people", "cities", column: "childhood_city_id"
   add_foreign_key "people", "cities", column: "current_city_id"
+  add_foreign_key "profits", "envelope_formulas"
+  add_foreign_key "profits", "users"
 end

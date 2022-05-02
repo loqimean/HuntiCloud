@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  resources :envelope_formulas
   root 'home#index'
 
   resources :people
+  resources :envelope_formulas, except: [:show]
+  resources :profits, except: [:show]
   devise_for :users, skip: %i[password registrations sessions], controllers: {
     sessions: 'users/sessions'
   }
