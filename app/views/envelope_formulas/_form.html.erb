@@ -1,35 +1,40 @@
-<%= form_with model: envelope_formula, id: dom_id(envelope_formula, "form"), class: "text-gray-900 dark:text-gray-800 contents" do |form| %>
+<%= form_with model: envelope_formula, id: dom_id(envelope_formula, "form"), class: "text-gray-900 col-span-9 dark:text-gray-800 grid grid-cols-9" do |form| %>
   <div class="col-span-2 px-4 py-3 text-xs">
-    <%= form.text_field :name, class: "block rounded-md border border-gray-200 outline-none px-3 py-2  w-full" %>
+    <%= form.text_field :name, class: "block rounded-md border border-gray-200 outline-none px-3 py-2 w-full" %>
     <%= inline_error_for(:name, envelope_formula) %>
   </div>
   <div class="px-4 py-3 text-xs">
-    <%= form.text_field :daily_expences, class: "block rounded-md border border-gray-200 outline-none px-3 py-2  w-full" %>
+    <%= form.text_field :daily_expences, class: "block rounded-md border border-gray-200 outline-none px-3 py-2 w-full", placeholder: '0.2' %>
     <%= inline_error_for(:daily_expences, envelope_formula) %>
   </div>
   <div class="px-4 py-3 text-xs">
-    <%= form.text_field :savings, class: "block rounded-md border border-gray-200 outline-none px-3 py-2  w-full" %>
+    <%= form.text_field :savings, class: "block rounded-md border border-gray-200 outline-none px-3 py-2 w-full", placeholder: '0.2' %>
     <%= inline_error_for(:savings, envelope_formula) %>
   </div>
   <div class="px-4 py-3 text-xs">
-    <%= form.text_field :funds_for_others, class: "block rounded-md border border-gray-200 outline-none px-3 py-2  w-full" %>
+    <%= form.text_field :funds_for_others, class: "block rounded-md border border-gray-200 outline-none px-3 py-2 w-full", placeholder: '0.2' %>
     <%= inline_error_for(:funds_for_others, envelope_formula) %>
   </div>
   <div class="px-4 py-3 text-xs">
-    <%= form.text_field :funds_for_self_development, class: "block rounded-md border border-gray-200 outline-none px-3 py-2  w-full" %>
+    <%= form.text_field :funds_for_self_development, class: "block rounded-md border border-gray-200 outline-none px-3 py-2 w-full", placeholder: '0.2' %>
     <%= inline_error_for(:funds_for_self_development, envelope_formula) %>
   </div>
   <div class="px-4 py-3 text-xs">
-    <%= form.text_field :funds_for_expensive_purchase, class: "block rounded-md border border-gray-200 outline-none px-3 py-2  w-full" %>
+    <%= form.text_field :funds_for_expensive_purchase, class: "block rounded-md border border-gray-200 outline-none px-3 py-2 w-full", placeholder: '0.2' %>
     <%= inline_error_for(:funds_for_expensive_purchase, envelope_formula) %>
   </div>
   <div class="px-4 py-3 text-xs">
-    <%= form.text_field :investment_funds, class: "block rounded-md border border-gray-200 outline-none px-3 py-2  w-full" %>
+    <%= form.text_field :investment_funds, class: "block rounded-md border border-gray-200 outline-none px-3 py-2 w-full", placeholder: '0.2' %>
     <%= inline_error_for(:investment_funds, envelope_formula) %>
   </div>
-  <div class="px-4 py-3 text-xs w-fit">
-    <%= button_tag type: 'submit', class: 'flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-full active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue', aria_label: 'edit' do %>
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+  <div class="flex items-center gap-3 px-4 py-3 text-xs w-fit">
+    <%= button_tag type: 'submit', class: 'flex w-fit items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-blue-600 border border-transparent rounded-full active:bg-blue-600 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue', aria_label: 'submit' do %>
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+    <% end %>
+    <% if params[:action] != 'edit' %>
+      <%= button_tag type: 'button', data: { action: 'click->clear-frame#clear' }, class: 'text-xs text-red-500'  do %>
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+      <% end %>
     <% end %>
   </div>
 <% end %>
