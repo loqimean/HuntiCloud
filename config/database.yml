@@ -82,6 +82,6 @@ test:
 #
 production:
   <<: *default
-  database: HuntiCloud_production
+  database: hunti_cloud_production
   username: xi-master
   password: <%= ENV["HUNTICLOUD_DATABASE_PASSWORD"] %>
