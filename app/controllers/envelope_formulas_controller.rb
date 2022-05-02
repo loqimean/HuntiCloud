@@ -1,6 +1,8 @@
 class EnvelopeFormulasController < ApplicationController
   include ActionView::RecordIdentifier
 
+  before_action :ensure_frame_response, only: [:new, :edit]
+
   def index
     @envelope_formulas = collection
   end
@@ -60,5 +62,9 @@ class EnvelopeFormulasController < ApplicationController
       params.require(:envelope_formula).permit(:name, :daily_expences, :savings,
                                               :funds_for_expensive_purchase, :funds_for_others,
                                               :funds_for_self_development, :investment_funds)
+    end
+
+    def ensure_frame_response
+      redirect_to root_path unless turbo_frame_request?
     end
 end
