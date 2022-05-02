@@ -29,4 +29,6 @@ class EnvelopeFormula < ApplicationRecord
 
   validates :name, :daily_expences, :funds_for_expensive_purchase, :funds_for_others,
             :funds_for_self_development, :investment_funds, :savings, presence: true
+  validates :name, uniqueness: { case_sensitive: false }
+  # add custom validation for only 100% sum of all fields
 end
