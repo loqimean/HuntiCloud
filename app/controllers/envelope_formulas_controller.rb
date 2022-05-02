@@ -14,12 +14,12 @@ class EnvelopeFormulasController < ApplicationController
   end
 
   def create
-    @envelope_formula = EnvelopeFormula.new(envelope_formula_params)
+    @envelope_formula = current_user.envelope_formulas.new(envelope_formula_params)
 
     if @envelope_formula.save
       render turbo_stream: [
-        turbo_stream.prepend('envelope_formulas', @envelope_formula),
-        turbo_stream.replace('form_envelope_formula', partial: 'form', locals: { envelope_formula: EnvelopeFormula.new })
+        turbo_stream.after('new-envelope_formula-form', @envelope_formula),
+        turbo_stream.replace('form_envelope_formula', '')
       ]
     else
       render :new, status: :unprocessable_entity
@@ -57,6 +57,8 @@ class EnvelopeFormulasController < ApplicationController
     end
 
     def envelope_formula_params
-      params.require(:envelope_formula).permit(:name, :user_id)
+      params.require(:envelope_formula).permit(:name, :daily_expences, :savings,
+                                              :funds_for_expensive_purchase, :funds_for_others,
+                                              :funds_for_self_development, :investment_funds)
     end
 end
