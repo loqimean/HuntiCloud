@@ -5,21 +5,20 @@
   </div>
   <div class="w-full overflow-hidden rounded-lg shadow-xs">
     <div class="w-full overflow-x-auto">
-      <div class="w-full whitespace-no-wrap shadow-lg divTable">
-        <div class="divTableHeading">
-          <div class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase bg-gray-100 border-b divTableRow dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800"> <%# thead %>
-            <div class="px-4 py-3 divTableCell">Name</div>
-            <div class="px-4 py-3 divTableCell">Daily expences</div>
-            <div class="px-4 py-3 divTableCell">Savings</div>
-            <div class="px-4 py-3 divTableCell">For others</div>
-            <div class="px-4 py-3 divTableCell">For self development</div>
-            <div class="px-4 py-3 divTableCell">For expensive purchase</div>
-            <div class="px-4 py-3 divTableCell">Investment funds</div>
-            <div class="px-4 py-3 divTableCell">&nbsp;</div>
-            <div class="px-4 py-3 divTableCell">&nbsp;</div>
+      <div class="grid w-full whitespace-no-wrap shadow-lg">
+        <div class="">
+          <div class="grid grid-cols-9 text-xs font-semibold tracking-wide text-left text-gray-500 uppercase bg-gray-100 border-b tableNew dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800"> <%# thead %>
+            <div class="col-span-2 px-4 py-3">Name</div>
+            <div class="px-4 py-3">Daily expences</div>
+            <div class="px-4 py-3">Savings</div>
+            <div class="px-4 py-3">For others</div>
+            <div class="px-4 py-3">For self development</div>
+            <div class="px-4 py-3">For expensive purchase</div>
+            <div class="px-4 py-3">Investment funds</div>
+            <div class="px-4 py-3">&nbsp;</div>
           </div>
         </div>
-        <div id="envelope_formulas" class="bg-white divTableBody dark:bg-gray-800">
+        <div id="envelope_formulas" class="bg-white dark:bg-gray-800">
           <%= render @envelope_formulas%>
         </div>
       </div>
