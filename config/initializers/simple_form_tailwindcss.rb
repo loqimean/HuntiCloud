@@ -22,10 +22,11 @@ SimpleForm.setup do |config|
     b.optional :pattern
     b.optional :min_max
     b.optional :readonly
-    b.use :label, class: 'ml-1 mb-2'
+    b.use :label, class: 'ml-1 mb-2 dark:text-gray-200 text-gray-700'
     b.use :input,
           class: 'mt-1 focus:ring-indigo-500 focus:border-indigo-500 ' \
-                 'block w-full shadow-sm sm:text-sm border-gray-300 rounded-md',
+                 'block w-full shadow-sm sm:text-sm border-gray-300 rounded-md ' \
+                 'text-gray-800',
           error_class: 'border-red-400 is-invalid mb-1', valid_class: 'is-valid'
     b.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback text-xs text-red-400' }
     b.use :hint, wrap_with: { tag: 'small', class: 'text-gray-400' }
@@ -33,7 +34,7 @@ SimpleForm.setup do |config|
 
   # vertical input for radio buttons and check boxes
   config.wrappers :vertical_collection, item_wrapper_class: 'form-check',
-                                        item_label_class: 'form-check-label',
+                                        item_label_class: 'form-check-label dark:text-gray-200 text-gray-700',
                                         tag: 'fieldset',
                                         class: 'form-group mb-3',
                                         error_class: 'form-group-invalid',
@@ -43,7 +44,8 @@ SimpleForm.setup do |config|
     b.wrapper :legend_tag, tag: 'legend', class: 'col-form-label pt-0' do |ba|
       ba.use :label_text, class: 'ml-3 block text-sm font-medium text-gray-700'
     end
-    b.use :input, class: 'focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 mr-2',
+    b.use :input, class: 'focus:ring-indigo-500 h-4 w-4 text-indigo-600 text-gray-800 ' \
+                          'border-gray-300 mr-2',
                   error_class: 'is-invalid border-red-400',
                   valid_class: 'is-valid'
     b.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback text-xs text-red-400' }
@@ -70,16 +72,17 @@ SimpleForm.setup do |config|
 
   # horizontal input for inline radio buttons and check boxes
   config.wrappers :horizontal_collection_inline, item_wrapper_class: 'form-check form-check-inline',
-                                                 item_label_class: 'form-check-label',
+                                                 item_label_class: 'form-check-label dark:text-gray-200 text-gray-700',
                                                  tag: 'div',
                                                  class: 'form-group flex flex-row-reverse w-fit mb-3',
                                                  error_class: 'form-group-invalid',
                                                  valid_class: 'form-group-valid' do |b|
     b.use :html5
     b.optional :readonly
-    b.use :label, class: 'pt-0 mb-2'
+    b.use :label, class: 'pt-0 mb-2 dark:text-gray-200 text-gray-700'
     b.wrapper :grid_wrapper, tag: 'div' do |ba|
-      ba.use :input, class: 'focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2',
+      ba.use :input, class: 'focus:ring-indigo-500 h-4 w-4 text-indigo-600 ' \
+                            'border-gray-300 rounded mr-2',
                      error_class: 'is-invalid', valid_class: 'is-valid'
       ba.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback text-xs text-red-400' }
       ba.use :hint, wrap_with: { tag: 'small', class: 'text-gray-400' }
@@ -92,9 +95,11 @@ SimpleForm.setup do |config|
                                                       valid_class: 'form-group-valid' do |b|
     b.use :html5
     b.optional :readonly
-    b.use :label, class: 'mb-2'
+    b.use :label, class: 'mb-2 dark:text-gray-200 text-gray-700'
     b.wrapper tag: 'div', class: 'flex flex-col md:flex-row gap-1 justify-between items-center' do |ba|
-      ba.use :input, class: 'w-full min-w-fit mt-1 focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md',
+      ba.use :input, class: 'w-full min-w-fit mt-1 focus:ring-indigo-500 text-gray-800 ' \
+                            'focus:border-indigo-500 block shadow-sm sm:text-sm ' \
+                            'border-gray-300 rounded-md',
                      error_class: '!border-red-500',
                      valid_class: 'is-valid'
     end
@@ -112,7 +117,7 @@ SimpleForm.setup do |config|
       bb.use :input, class: 'focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded mr-2',
                      error_class: '!border-red-500',
                      valid_class: 'is-valid'
-      bb.use :label, class: 'mb-2'
+      bb.use :label, class: 'mb-2 dark:text-gray-200 text-gray-700'
     end
     b.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback text-xs text-red-400' }
     b.use :hint, wrap_with: { tag: 'small', class: 'text-gray-400' }
@@ -128,7 +133,7 @@ SimpleForm.setup do |config|
     b.optional :maxlength
     b.optional :minlength
     b.optional :readonly
-    b.use :label, class: 'mb-2'
+    b.use :label, class: 'mb-2 dark:text-gray-200 text-gray-700'
     b.use :input, class: 'w-full min-w-fit mt-1 focus:ring-indigo-500 focus:border-indigo-500 block shadow-sm sm:text-sm border-gray-300 rounded-md border',
                   error_class: 'border-red-400 is-invalid mb-1',
                   valid_class: 'is-valid'
