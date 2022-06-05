@@ -19,4 +19,6 @@ class City < ApplicationRecord
 
   belongs_to :region
   has_many :people, dependent: :restrict_with_exception
+
+  scope :ordered, ->{ order(:name) }
 end
