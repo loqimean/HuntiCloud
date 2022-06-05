@@ -10,11 +10,13 @@
 #  first_name         :string
 #  gender             :integer
 #  green_personality  :decimal(10, 2)   default(0.0)
+#  instagram_url      :string
 #  last_name          :string
 #  phone_number       :bigint
 #  photo              :string           not null
 #  red_personality    :decimal(10, 2)   default(0.0)
 #  second_name        :string
+#  telegram           :string
 #  yellow_personality :decimal(10, 2)   default(0.0)
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
@@ -41,10 +43,11 @@ class Person < ApplicationRecord
   belongs_to :childhood_city, class_name: 'City', optional: true
   belongs_to :current_city, class_name: 'City'
 
-  validates :first_name, presence: true
+  validates :first_name, :gender, :photo, presence: true
   validates :gender, inclusion: { in: HashWithIndifferentAccess.new(GENDERS).keys }
 
-  before_validation :set_default_picture
+  scope :ordered, ->{ order(:first_name) }
+  before_save :set_default_picture
 
   def full_name
     "#{first_name} #{last_name} #{second_name}"
