@@ -10,11 +10,13 @@
 #  first_name         :string
 #  gender             :integer
 #  green_personality  :decimal(10, 2)   default(0.0)
+#  instagram_url      :string
 #  last_name          :string
 #  phone_number       :bigint
 #  photo              :string           not null
 #  red_personality    :decimal(10, 2)   default(0.0)
 #  second_name        :string
+#  telegram           :string
 #  yellow_personality :decimal(10, 2)   default(0.0)
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
