@@ -15,6 +15,18 @@
   abbr[title=required] {
     @apply !text-red-500 no-underline;
   }
+
+  .avatar-picture:hover .overlay {
+    @apply transition ease-in-out backdrop-blur-[2px];
+  }
+
+  .avatar-picture:hover * {
+    @apply z-10 flex items-center justify-center w-full h-full transition-opacity ease-in-out opacity-100;
+  }
+
+  .avatar-picture * {
+    @apply opacity-0;
+  }
 }
 
 /* buttons.css */
@@ -36,6 +48,13 @@
 @layer components {
   .card {
     @apply flex items-center w-full p-4 bg-white rounded-lg shadow-lg dark:bg-gray-800 h-fit sm:w-fit;
+  }
+}
+
+/* typography.css */
+@layer base {
+  h1 {
+    @apply text-4xl font-bold text-dark-grey dark:text-white;
   }
 }
 

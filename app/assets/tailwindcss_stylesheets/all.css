@@ -9,4 +9,16 @@
   abbr[title=required] {
     @apply !text-red-500 no-underline;
   }
+
+  .avatar-picture:hover .overlay {
+    @apply transition ease-in-out backdrop-blur-[2px];
+  }
+
+  .avatar-picture:hover * {
+    @apply z-10 flex items-center justify-center w-full h-full transition-opacity ease-in-out opacity-100;
+  }
+
+  .avatar-picture * {
+    @apply opacity-0;
+  }
 }
