@@ -47,7 +47,7 @@ class Person < ApplicationRecord
   validates :gender, inclusion: { in: HashWithIndifferentAccess.new(GENDERS).keys }
 
   scope :ordered, ->{ order(:first_name) }
-  before_save :set_default_picture
+  after_initialize :set_default_picture
 
   def full_name
     "#{first_name} #{last_name} #{second_name}"
@@ -56,6 +56,6 @@ class Person < ApplicationRecord
   def set_default_picture
     return unless self.photo.blank?
 
-    self.photo = FakePicture::Avatar.file(gender.to_sym)
+    self.photo = FakePicture::Avatar.file(gender&.to_sym || GENDERS.keys.sample)
   end
 end
