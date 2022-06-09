@@ -2,7 +2,7 @@ class PeopleController < ApplicationController
   before_action :set_person, only: %i[show edit update destroy]
 
   def index
-    @people = Person.ordered
+    @people = Person.includes(:childhood_city, :current_city).ordered
   end
 
   def show; end
@@ -48,6 +48,7 @@ class PeopleController < ApplicationController
                                     :phone_number, :email, :birthday, :gender,
                                     :childhook_city_id, :current_city_id, :characteristic,
                                     :blue_personality, :red_personality, :green_personality,
-                                    :yellow_personality, :instagram_url, :telegram)
+                                    :yellow_personality, :instagram_url, :telegram,
+                                    :photo_cache)
   end
 end
