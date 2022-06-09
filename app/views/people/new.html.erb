@@ -1,10 +1,16 @@
 <section class="w-full h-full mx-auto md:w-2/3">
-  <%= simple_form_for @person do |f| %>
-    <label class="relative block mx-auto mb-10 overflow-hidden bg-white rounded-full cursor-pointer avatar-picture w-36 h-36" for="person_photo">
+  <%= simple_form_for @person, html: { data: {
+                                                controller: 'form',
+                                                form_file_field_selector_value: '#person_photo',
+                                                form_picture_container_selector_value: 'label[for="person_photo"]'
+                                            } } do |f| %>
+    <label class="relative block mx-auto mb-10 overflow-hidden bg-white bg-center bg-cover rounded-full cursor-pointer avatar-picture w-36 h-36"
+                  for="person_photo" style="background-image: url(<%= f.object.photo&.url %>)">
       <span class="absolute font-bold">Upload</span>
       <div class="overlay"></div>
     </label>
-    <%= f.input :photo, label: false, input_html: { class: 'hidden' } %>
+    <%= f.input :photo, label: false, input_html: { class: 'hidden', data: { action: 'change->form#handlePictureUpload' } } %>
+    <%= f.input :photo_cache, as: :hidden %>
 
     <div class="grid grid-cols-1 gap-5 xl:grid-cols-2">
       <%= f.input :first_name %>
@@ -17,7 +23,7 @@
     </div>
 
     <%= f.input :gender, collection: Person::GENDERS.keys %>
-    <%= f.input :current_city_id, collection: City.ordered %>
+    <%= f.association :current_city, collection: City.ordered %>
 
     <%= f.input :characteristic %>
 
