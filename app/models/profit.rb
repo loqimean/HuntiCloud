@@ -28,4 +28,6 @@
 class Profit < ApplicationRecord
   belongs_to :user
   belongs_to :envelope_formula
+
+  scope :ordered, ->{ order(created_at: :desc) }
 end

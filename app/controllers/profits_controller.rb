@@ -2,7 +2,7 @@ class ProfitsController < ApplicationController
   before_action :set_profit, only: %i[ show edit update destroy ]
 
   def index
-    @profits = Profit.all
+    @profits = Profit.ordered
   end
 
   def new
