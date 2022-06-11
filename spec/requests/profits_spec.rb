@@ -13,119 +13,151 @@ require 'rails_helper'
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/profits", type: :request do
-  
+
   # This should return the minimal set of attributes required to create a valid
   # Profit. As you add validations to Profit, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
-
-  describe "GET /index" do
-    it "renders a successful response" do
-      Profit.create! valid_attributes
-      get profits_url
-      expect(response).to be_successful
+  context 'when user logged in' do
+    let!(:user) { create(:user) }
+    let!(:envelope_formula) { create(:envelope_formula) }
+    let(:valid_attributes) do
+      attributes_for(:profit).merge(
+        user_id: user.id,
+        envelope_formula_id: envelope_formula.id
+      )
     end
-  end
-
-  describe "GET /show" do
-    it "renders a successful response" do
-      profit = Profit.create! valid_attributes
-      get profit_url(profit)
-      expect(response).to be_successful
+    let(:invalid_attributes) do
+      attributes_for(:profit, :invalid).merge(
+        user_id: user.id,
+        envelope_formula_id: envelope_formula.id
+      )
     end
-  end
 
-  describe "GET /new" do
-    it "renders a successful response" do
-      get new_profit_url
-      expect(response).to be_successful
+    before do
+      sign_in user
     end
-  end
 
-  describe "GET /edit" do
-    it "renders a successful response" do
-      profit = Profit.create! valid_attributes
-      get edit_profit_url(profit)
-      expect(response).to be_successful
+    describe "GET /index" do
+      context 'with records' do
+        let!(:profit) { create(:profit) }
+
+        it "renders a successful response" do
+          get profits_url
+
+          expect(response).to be_successful
+        end
+      end
+
+      context 'without records' do
+        it "renders a successful response" do
+          get profits_url
+
+          expect(response).to be_successful
+        end
+      end
     end
-  end
 
-  describe "POST /create" do
-    context "with valid parameters" do
-      it "creates a new Profit" do
-        expect {
+    describe "GET /new" do
+      it "renders a successful response" do
+        get new_profit_url
+
+        expect(response).to be_successful
+      end
+    end
+
+    describe "GET /edit" do
+      let!(:profit) { create(:profit) }
+
+      it "renders a successful response" do
+        get edit_profit_url(profit)
+
+        expect(response).to be_successful
+      end
+    end
+
+    describe "POST /create" do
+      context "with valid parameters" do
+        it "creates a new Profit" do
+          expect {
+            post profits_url, params: { profit: valid_attributes }
+          }.to change(Profit, :count).by(1)
+        end
+
+        it "redirects to the created profit" do
           post profits_url, params: { profit: valid_attributes }
-        }.to change(Profit, :count).by(1)
+
+          expect(response).to redirect_to(profits_path)
+        end
       end
 
-      it "redirects to the created profit" do
-        post profits_url, params: { profit: valid_attributes }
-        expect(response).to redirect_to(profit_url(Profit.last))
-      end
-    end
+      context "with invalid parameters" do
+        it "does not create a new Profit" do
+          expect {
+            post profits_url, params: { profit: invalid_attributes }
+          }.to change(Profit, :count).by(0)
+        end
 
-    context "with invalid parameters" do
-      it "does not create a new Profit" do
-        expect {
+        it "renders a successful response (i.e. to display the 'new' template)" do
           post profits_url, params: { profit: invalid_attributes }
-        }.to change(Profit, :count).by(0)
+
+          expect(response).to be_unprocessable
+          expect(response).to render_template(:new)
+        end
+      end
+    end
+
+    describe "PATCH /update" do
+      let!(:profit) { create(:profit) }
+
+      context "with valid parameters" do
+        let(:new_attributes) do
+          { amount: 5 }
+        end
+
+        subject do
+          patch profit_url(profit), params: { profit: new_attributes }
+
+          profit.reload
+        end
+
+        it "updates the requested profit" do
+          expect do
+            subject
+          end.to change(profit, :amount)
+        end
+
+        it "redirects to the profit" do
+          is_expected.to redirect_to(profits_path)
+        end
       end
 
-      it "renders a successful response (i.e. to display the 'new' template)" do
-        post profits_url, params: { profit: invalid_attributes }
+      context "with invalid parameters" do
+        it "renders a successful response (i.e. to display the 'edit' template)" do
+          patch profit_url(profit), params: { profit: invalid_attributes }
+
+          expect(response).to be_unprocessable
+          expect(response).to render_template(:edit)
+        end
+      end
+    end
+
+    describe "DELETE /destroy" do
+      let!(:profit) { create(:profit) }
+
+      it "destroys the requested profit" do
+        expect {
+          delete profit_url(profit)
+        }.to change(Profit, :count).by(-1)
+      end
+
+      it "redirects to the profits list" do
+        expect do
+          delete profit_url(profit)
+        end.to change(Profit, :count).by(-1)
+
         expect(response).to be_successful
       end
-    end
-  end
-
-  describe "PATCH /update" do
-    context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
-      it "updates the requested profit" do
-        profit = Profit.create! valid_attributes
-        patch profit_url(profit), params: { profit: new_attributes }
-        profit.reload
-        skip("Add assertions for updated state")
-      end
-
-      it "redirects to the profit" do
-        profit = Profit.create! valid_attributes
-        patch profit_url(profit), params: { profit: new_attributes }
-        profit.reload
-        expect(response).to redirect_to(profit_url(profit))
-      end
-    end
-
-    context "with invalid parameters" do
-      it "renders a successful response (i.e. to display the 'edit' template)" do
-        profit = Profit.create! valid_attributes
-        patch profit_url(profit), params: { profit: invalid_attributes }
-        expect(response).to be_successful
-      end
-    end
-  end
-
-  describe "DELETE /destroy" do
-    it "destroys the requested profit" do
-      profit = Profit.create! valid_attributes
-      expect {
-        delete profit_url(profit)
-      }.to change(Profit, :count).by(-1)
-    end
-
-    it "redirects to the profits list" do
-      profit = Profit.create! valid_attributes
-      delete profit_url(profit)
-      expect(response).to redirect_to(profits_url)
     end
   end
 end

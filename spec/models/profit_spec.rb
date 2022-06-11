@@ -28,5 +28,9 @@
 require 'rails_helper'
 
 RSpec.describe Profit, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe '#validations' do
+    context ':presence' do
+      it { is_expected.to validate_presence_of(:amount) }
+    end
+  end
 end

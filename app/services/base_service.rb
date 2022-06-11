@@ -4,8 +4,6 @@ class BaseService
   end
 
   def call(url)
-    raise 'Not given url' if url.nil?
-
     RestClient.get(url)
   end
 end

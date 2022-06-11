@@ -12,127 +12,154 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/envelope_formulas", type: :request do
+RSpec.describe EnvelopeFormulasController, type: :request do
 
   # This should return the minimal set of attributes required to create a valid
   # EnvelopeFormula. As you add validations to EnvelopeFormula, be sure to
   # adjust the attributes here as well.
-  let!(:user) { create(:user) }
+  context 'when user logged in' do
+    include_context :login_user
 
-  let(:valid_attributes) {
-    attributes_for(:envelope_formula).merge(user_id: user.id)
-  }
-
-  let(:invalid_attributes) {
-    attributes_for(:envelope_formula, :invalid).merge(user_id: user.id)
-  }
-
-  before do
-    sign_in user
-  end
-
-  describe "GET /index" do
-    it "renders a successful response" do
-      EnvelopeFormula.create! valid_attributes
-      get envelope_formulas_url
-      expect(response).to be_successful
+    let(:valid_attributes) do
+      attributes_for(:envelope_formula).merge(user_id: user.id)
     end
-  end
 
-  describe "GET /show" do
-    it "renders a successful response" do
-      envelope_formula = EnvelopeFormula.create! valid_attributes
-      get envelope_formula_url(envelope_formula)
-      expect(response).to be_successful
+    let(:invalid_attributes) do
+      attributes_for(:envelope_formula, :invalid).merge(user_id: user.id)
     end
-  end
 
-  describe "GET /new" do
-    it "renders a successful response" do
-      get new_envelope_formula_url
-      expect(response).to be_successful
-    end
-  end
-
-  describe "GET /edit" do
-    it "renders a successful response" do
-      envelope_formula = EnvelopeFormula.create! valid_attributes
-      get edit_envelope_formula_url(envelope_formula)
-      expect(response).to be_successful
-    end
-  end
-
-  describe "POST /create" do
-    context "with valid parameters" do
-      it "creates a new EnvelopeFormula" do
-        expect {
-          post envelope_formulas_url, params: { envelope_formula: valid_attributes }
-        }.to change(EnvelopeFormula, :count).by(1)
+    describe "GET /index" do
+      subject do
+        get envelope_formulas_url
       end
 
-      it "redirects to the created envelope_formula" do
-        post envelope_formulas_url, params: { envelope_formula: valid_attributes }
-        expect(response).to redirect_to(envelope_formula_url(EnvelopeFormula.last))
+      context 'with records' do
+        let!(:envelope_formula) { create(:envelope_formula) }
+
+        it "renders a successful response" do
+          subject
+
+          expect(response).to be_successful
+          expect(response).to render_template(:index)
+        end
+      end
+
+      context 'without records' do
+        it "renders a successful response" do
+          subject
+
+          expect(response).to be_successful
+          expect(response).to render_template(:index)
+        end
       end
     end
 
-    context "with invalid parameters" do
-      it "does not create a new EnvelopeFormula" do
-        expect {
-          post envelope_formulas_url, params: { envelope_formula: invalid_attributes }
-        }.to change(EnvelopeFormula, :count).by(0)
-      end
+    describe "GET /new" do
+      it "renders a successful response" do
+        get new_envelope_formula_url, headers: { 'Turbo-Frame': :new }
 
-      it "renders a successful response (i.e. to display the 'new' template)" do
-        post envelope_formulas_url, params: { envelope_formula: invalid_attributes }
-        expect(response).to be_unprocessable
+        expect(response).to be_successful
+        expect(response).to render_template(:new)
       end
     end
-  end
 
-  describe "PATCH /update" do
-    context "with valid parameters" do
-      let(:new_attributes) { { name: 'new name' } }
+    describe "GET /edit" do
+      let!(:envelope_formula) { create(:envelope_formula) }
 
-      it "updates the requested envelope_formula" do
-        envelope_formula = EnvelopeFormula.create! valid_attributes
+      it "renders a successful response" do
+        get edit_envelope_formula_url(envelope_formula), headers: { 'Turbo-Frame': :new }
 
-        expect do
-          patch envelope_formula_url(envelope_formula), params: { envelope_formula: new_attributes }
+        expect(response).to be_successful
+        expect(response).to render_template(:edit)
+      end
+    end
 
-          envelope_formula.reload
-        end.to change(envelope_formula, :name)
+    describe "POST /create" do
+      subject do
+        post envelope_formulas_url, params: { envelope_formula: params }
       end
 
-      it "redirects to the envelope_formula" do
-        envelope_formula = EnvelopeFormula.create! valid_attributes
-        patch envelope_formula_url(envelope_formula), params: { envelope_formula: new_attributes }
+      context "with valid parameters" do
+        let(:params) do
+          attributes_for(:envelope_formula).merge(user_id: user.id)
+        end
+
+        it "creates a new EnvelopeFormula" do
+          expect {
+            subject
+          }.to change(EnvelopeFormula, :count).by(1)
+
+          expect(response).to be_successful
+          expect(response).to render_template(:_envelope_formula)
+        end
+      end
+
+      context "with invalid parameters" do
+        let(:params) do
+          attributes_for(:envelope_formula, :invalid).merge(user_id: user.id)
+        end
+
+        it "does not create a new EnvelopeFormula" do
+          expect do
+            subject
+          end.to change(EnvelopeFormula, :count).by(0)
+        end
+
+        it "renders a successful response (i.e. to display the 'new' template)" do
+          subject
+
+          expect(response).to be_unprocessable
+        end
+
+        it { is_expected.to render_template(:new) }
+      end
+    end
+
+    describe "PATCH /update" do
+      let!(:envelope_formula) { create(:envelope_formula) }
+
+      subject do
+        patch envelope_formula_url(envelope_formula), params: { envelope_formula: params }
+
         envelope_formula.reload
-        expect(response).to redirect_to(envelope_formula_url(envelope_formula))
+      end
+
+      context "with valid parameters" do
+        let(:params) { { name: 'new name' } }
+
+        it "updates the requested envelope_formula" do
+          expect do
+            subject
+          end.to change(envelope_formula, :name)
+
+          expect(response).to be_successful
+        end
+
+        it { is_expected.to render_template(:_envelope_formula) }
+      end
+
+      context "with invalid parameters" do
+        let(:params) { { name: '' } }
+
+        it do
+          subject
+
+          expect(response).to be_unprocessable
+          expect(response).to render_template(:edit)
+        end
       end
     end
 
-    context "with invalid parameters" do
-      it "renders a successful response (i.e. to display the 'edit' template)" do
-        envelope_formula = EnvelopeFormula.create! valid_attributes
-        patch envelope_formula_url(envelope_formula), params: { envelope_formula: invalid_attributes }
-        expect(response).to be_unprocessable
+    describe "DELETE /destroy" do
+      let!(:envelope_formula) { create(:envelope_formula) }
+
+      it "destroys the requested envelope_formula" do
+        expect {
+          delete envelope_formula_url(envelope_formula)
+        }.to change(EnvelopeFormula, :count).by(-1)
+
+        expect(response).to be_successful
       end
-    end
-  end
-
-  describe "DELETE /destroy" do
-    it "destroys the requested envelope_formula" do
-      envelope_formula = EnvelopeFormula.create! valid_attributes
-      expect {
-        delete envelope_formula_url(envelope_formula)
-      }.to change(EnvelopeFormula, :count).by(-1)
-    end
-
-    it "redirects to the envelope_formulas list" do
-      envelope_formula = EnvelopeFormula.create! valid_attributes
-      delete envelope_formula_url(envelope_formula)
-      expect(response).to redirect_to(envelope_formulas_url)
     end
   end
 end

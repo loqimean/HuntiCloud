@@ -24,7 +24,7 @@ class ProfitsController < ApplicationController
 
   def update
     if @profit.update(profit_params)
-      redirect_to @profit, notice: "Profit was successfully updated."
+      redirect_to profits_path, notice: "Profit was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end

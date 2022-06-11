@@ -34,6 +34,12 @@ FactoryBot.define do
     funds_for_self_development { "9.99" }
     investment_funds { "9.99" }
     savings { "9.99" }
-    user { nil }
+
+    user
+    envelope_formula
+
+    trait :invalid do
+      amount { nil }
+    end
   end
 end

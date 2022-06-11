@@ -30,4 +30,6 @@ class Profit < ApplicationRecord
   belongs_to :envelope_formula
 
   scope :ordered, ->{ order(created_at: :desc) }
+
+  validates :amount, presence: true
 end

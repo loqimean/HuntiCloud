@@ -17,11 +17,17 @@ RSpec.describe MonobankService::Base do
       }
 
       it 'returns currencies hash from JSON object' do
-        allow_any_instance_of(MonobankService::Base).to receive(:call).and_return(currencies_json)
+        allow(RestClient).to receive(:get).and_return(currencies_json)
 
         expect(monobank_service.currencies).to be_a(Hash)
         expect(monobank_service.currencies.blank?).to be_falsey
         expect(monobank_service.currencies.dig('currencyCodeA')).to eq(840)
+      end
+
+      it 'when there is no internet' do
+        allow(RestClient).to receive(:get).and_raise(SocketError)
+
+        expect(monobank_service.currencies).to eq(described_class::DEFAULT_CURRENCIES)
       end
     end
   end

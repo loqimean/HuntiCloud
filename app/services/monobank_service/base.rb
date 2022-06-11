@@ -1,5 +1,9 @@
 class MonobankService::Base < BaseService
   CURRENCY_API = 'https://api.monobank.ua/bank/currency'.freeze
+  DEFAULT_CURRENCIES = [
+    {"currencyCodeA"=>978, "currencyCodeB"=>980, "rateBuy"=>00, "rateSell"=>00},
+    {"currencyCodeA"=>840, "currencyCodeB"=>980, "rateBuy"=>00, "rateSell"=>00}
+  ].freeze
 
   attr_reader :currencies
 
@@ -19,8 +23,7 @@ class MonobankService::Base < BaseService
         JSON.parse(self.call(CURRENCY_API))
       end
     rescue => exception
-      [{"currencyCodeA"=>978, "currencyCodeB"=>980, "rateBuy"=>00, "rateSell"=>00},
-      {"currencyCodeA"=>840, "currencyCodeB"=>980, "rateBuy"=>00, "rateSell"=>00}]
+      DEFAULT_CURRENCIES
     end
   end
 end

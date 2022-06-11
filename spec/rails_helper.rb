@@ -46,3 +46,8 @@ SimpleCov.start do
   add_filter '/config/'
   add_filter '/uploaders/'
 end
+
+RSpec.shared_context :login_user do
+  let(:user) { create(:user) }
+  before { sign_in user }
+end
