@@ -27,6 +27,9 @@ module.exports = {
       },
       margin: {
         'centered-logo': '15%'
+      },
+      height: {
+        '120': '30rem'
       }
     },
   },
