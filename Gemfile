@@ -25,6 +25,7 @@ gem 'fake_picture', '~> 0.2.2'
 gem "avatarro"
 gem 'simple_form', git: 'https://github.com/loqimean/simple_form.git', branch: 'main'
 gem 'ransack'
+gem 'inline_svg'
 
 group :development, :test do
   gem 'debug', platforms: %i[ mri mingw x64_mingw ]

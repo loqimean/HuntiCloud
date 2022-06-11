@@ -1,0 +1,7 @@
+<section class="w-full h-full mx-auto md:w-2/3">
+  <%= link_to people_path, class: 'text-gray-800 dark:text-gray-200 flex gap-1 absolute top-10 left-12' do %>
+    <%= inline_svg_tag 'icons/arrow-left.svg' %>
+    <span>Back</span>
+  <% end %>
+  <%= render 'people/form', person: @person %>
+</section>
