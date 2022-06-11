@@ -8,7 +8,6 @@ require 'capistrano/deploy'
 require 'capistrano/rails'
 require 'capistrano/passenger'
 require 'capistrano/rvm'
-require 'capistrano/yarn'
 require 'capistrano/bundler'
 require 'capistrano/linked_files'
 

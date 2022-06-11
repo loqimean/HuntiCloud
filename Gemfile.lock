@@ -106,8 +106,6 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
-    capistrano-yarn (2.0.2)
-      capistrano (~> 3.0)
     carrierwave (2.2.2)
       activemodel (>= 5.0.0)
       activesupport (>= 5.0.0)
@@ -352,7 +350,6 @@ DEPENDENCIES
   capistrano-passenger (~> 0.2.0)
   capistrano-rails (~> 1.2)
   capistrano-rvm
-  capistrano-yarn
   carrierwave (~> 2.2)
   database_cleaner-active_record
   debug
