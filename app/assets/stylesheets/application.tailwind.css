@@ -27,6 +27,12 @@
   .avatar-picture * {
     @apply opacity-0;
   }
+
+  /* Form */
+
+  .input {
+    @apply pl-4 text-gray-800 bg-gray-100 border-gray-200 dark:border-gray-500 dark:bg-gray-700 rounded-xl focus:ring-purple-500 focus:border-purple-500 pr-7 dark:text-gray-200;
+  }
 }
 
 /* buttons.css */

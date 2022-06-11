@@ -24,8 +24,8 @@ SimpleForm.setup do |config|
     b.optional :readonly
     b.use :label, class: 'ml-1 mb-2 dark:text-gray-200 text-gray-700'
     b.use :input,
-          class: 'mt-1 focus:ring-indigo-500 focus:border-indigo-500 ' \
-                 'block w-full shadow-sm sm:text-sm border-gray-300 rounded-md ' \
+          class: 'mt-1 bg-gray-700 text-gray-200 ring-gray-400 focus:ring-indigo-500 ' \
+                 'block w-full shadow-sm sm:text-sm rounded-md ' \
                  'text-gray-800',
           error_class: 'border-red-400 is-invalid mb-1', valid_class: 'is-valid'
     b.use :full_error, wrap_with: { tag: 'div', class: 'invalid-feedback text-xs text-red-400' }
