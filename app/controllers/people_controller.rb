@@ -26,7 +26,7 @@ class PeopleController < ApplicationController
 
   def update
     if @person.update(person_params)
-      redirect_to person_url(@person), notice: 'Person was successfully updated.'
+      redirect_to people_path, notice: 'Person was successfully updated.'
     else
       render :edit, status: :unprocessable_entity
     end
