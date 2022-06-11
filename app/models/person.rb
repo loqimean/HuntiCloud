@@ -54,7 +54,7 @@ class Person < ApplicationRecord
   end
 
   def set_default_picture
-    return unless self.photo.blank?
+    return if self.photo.present?
 
     self.photo = FakePicture::Avatar.file(gender&.to_sym || GENDERS.keys.sample)
   end
