@@ -359,6 +359,7 @@ DEPENDENCIES
   factory_bot_rails
   fake_picture (~> 0.2.2)
   faker (~> 2.19)
+  image_processing
   importmap-rails
   inline_svg
   passenger
