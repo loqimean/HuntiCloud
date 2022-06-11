@@ -3,7 +3,7 @@
                                             form_file_field_selector_value: '#person_photo',
                                             form_picture_container_selector_value: 'label[for="person_photo"]'
                                           } } do |f| %>
-  <label class="relative block mx-auto mb-10 overflow-hidden bg-white bg-center bg-cover rounded-full cursor-pointer avatar-picture w-36 h-36"
+  <label class="relative block w-40 h-40 mx-auto mb-10 overflow-hidden bg-white bg-center bg-cover rounded-full cursor-pointer avatar-picture"
                 for="person_photo" style="background-image: url(<%= f.object.photo&.url %>)">
     <span class="absolute font-bold">Upload</span>
     <div class="overlay"></div>

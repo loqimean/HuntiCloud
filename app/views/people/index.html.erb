@@ -9,7 +9,7 @@
           <%= link_to edit_person_path(person), class: 'absolute left-7 top-4 hover:underline text-gray-600 hover:text-gray-400' do %>
             <span>Edit</span>
           <% end %>
-          <%= image_tag person.photo.url, width: 80, height: 80, class: 'rounded-full block mx-auto mb-5 h-20 w-20 object-cover' %>
+          <%= image_tag person.photo.url, width: 160, height: 160, class: 'rounded-full block mx-auto mb-5 h-40 w-40 object-cover' %>
           <%= simple_format(person.full_name) %>
 
           <div class="flex items-center justify-between w-full">
