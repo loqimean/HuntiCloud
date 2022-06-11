@@ -2,7 +2,8 @@ class PeopleController < ApplicationController
   before_action :set_person, only: %i[show edit update destroy]
 
   def index
-    @people = Person.includes(:childhood_city, :current_city).ordered
+    @q = Person.ransack(params[:q])
+    @people = @q.result.includes(:childhood_city, :current_city).ordered
   end
 
   def show; end

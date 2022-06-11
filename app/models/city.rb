@@ -21,4 +21,6 @@ class City < ApplicationRecord
   has_many :people, dependent: :restrict_with_exception
 
   scope :ordered, ->{ order(:name) }
+  scope :with_people_for_current_city, ->{ joins('INNER JOIN "people" ON "people"."current_city_id" = "cities"."id"').distinct }
+  scope :with_people_for_childhood_city, ->{ joins('INNER JOIN "people" ON "people"."childhood_city_id" = "cities"."id"').distinct }
 end

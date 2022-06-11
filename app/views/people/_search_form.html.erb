@@ -1,0 +1,12 @@
+<%= search_form_for q do |f| %>
+  <div class="inline-block">
+    <%= f.label :gender_eq, 'Filter by gender - ', class: 'hidden lg:inline' %>
+    <%= f.select :gender_eq, Person::GENDERS, { include_blank: 'All' }, { onchange: 'this.form.submit()', class: 'input mr-2' } %>
+
+    <%= f.label :current_city_id_eq, 'Filter by current city - ', class: 'hidden lg:inline' %>
+    <%= f.select :current_city_id_eq, City.with_people_for_current_city.ordered.pluck(:name, :id), { include_blank: 'All' }, { onchange: 'this.form.submit()', class: 'input mr-2' } %>
+
+    <%= f.label :childhood_city_id_eq, 'Filter by childhood city - ', class: 'hidden lg:inline' %>
+    <%= f.select :childhood_city_id_eq, City.with_people_for_childhood_city.ordered.pluck(:name, :id), { include_blank: 'All' }, { onchange: 'this.form.submit()', class: 'input mr-2' } %>
+  </div>
+<% end %>
