@@ -14,7 +14,7 @@ require 'capistrano/linked_files'
 
 # If you are using rbenv add these lines:
 set :rvm_type, :user
-set :rvm_ruby_version, '3.0.0'
+set :rvm_ruby_version, '3.1.2'
 
 # Load the SCM plugin appropriate to your project:
 require 'capistrano/scm/git'
