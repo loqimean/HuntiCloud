@@ -6,6 +6,7 @@
 set :stage, :production
 set :rails_env, :production
 set :branch, 'master'
+set :passenger_restart_with_touch, true
 
 server '192.168.0.106', user: 'xi-master', roles: %w[app db web]
 

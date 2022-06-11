@@ -42,10 +42,11 @@ group :development do
 
   # Deploy
   gem 'capistrano', '~> 3.7'
-  gem 'capistrano-passenger', '~> 0.2.0'
-  gem 'capistrano-rails', '~> 1.2'
   gem 'capistrano-linked-files'
+  gem 'capistrano-rails', '~> 1.2'
+  gem 'capistrano-bundler'
   gem 'capistrano-rvm'
+  gem 'capistrano-passenger', '~> 0.2.0'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"

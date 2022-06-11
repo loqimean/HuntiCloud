@@ -5,11 +5,12 @@ require 'capistrano/setup'
 require 'capistrano/deploy'
 
 # This will add tasks to your deploy process
-require 'capistrano/rails'
-require 'capistrano/passenger'
-require 'capistrano/rvm'
-require 'capistrano/bundler'
 require 'capistrano/linked_files'
+require "capistrano/rvm"
+require "capistrano/bundler"
+require "capistrano/rails/assets"
+require "capistrano/rails/migrations"
+require "capistrano/passenger"
 
 # If you are using rbenv add these lines:
 set :rvm_type, :user
